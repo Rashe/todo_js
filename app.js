@@ -11,8 +11,19 @@ var users = require('./routes/users');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+//1
+var swig = require('swig');
+app.engine('html', swig.renderFile);
+
+app.set('view engine', 'html');
+app.set('views', __dirname + '/views');
+app.set('view cache', false);
+swig.setDefaults({ cache: false });
+//swing end
+
+
+
+
 
 app.use(favicon());
 app.use(logger('dev'));
