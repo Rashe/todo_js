@@ -4,7 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('./model/mongoose');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -20,10 +20,6 @@ app.set('views', __dirname + '/views');
 app.set('view cache', false);
 swig.setDefaults({ cache: false });
 //swing end
-
-
-
-
 
 app.use(favicon());
 app.use(logger('dev'));

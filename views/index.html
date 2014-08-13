@@ -10,7 +10,7 @@
 <section class="loginForm">
 
    <h1>Велкам че, пацантрэ гоу суда</h1>
-    <form action="">
+    <form id="login_form" name="login-form">
 
         <div class="row">
             <div class="columns">
@@ -23,13 +23,46 @@
             </div>
         </div>
         <div class="row text-center">
-            <a href="#" class="button">ХУЯК</a>
+            <button class="button">ХУЯК</button>
         </div>
 
     </form>
 
 
 </section>
+
+
+<script>
+    console.log('22221');
+    $(document.forms['login_form']).on('submit', function() {
+        console.log('2221');
+        var form = $(this);
+       console.log('1');
+        $('.error', form).html('');
+        $(":submit", form).button("loading");
+        console.log('13');
+        $.ajax({
+            url: "/login",
+            method: "POST",
+            data: form.serialize(),
+            complete: function() {
+                $(":submit", form).button("reset");
+            },
+            statusCode: {
+                200: function() {
+                    form.html("Вы вошли в сайт").addClass('alert-success');
+                    window.location.href = "/";
+                },
+                403: function(jqXHR) {
+                    var error = JSON.parse(jqXHR.responseText);
+                    $('.error', form).html(error.message);
+                }
+            }
+        });
+        console.log('12');
+        return false;
+    });
+</script>
 
 
 {% endblock %}

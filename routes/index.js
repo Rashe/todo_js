@@ -3,19 +3,19 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'To do List' });
 });
 
 router.get('/about', function(req, res) {
-    res.render('about', { title: 'Express' });
+    res.render('about', { title: 'About' });
 });
 
-router.get('/regi', function(req, res) {
-    res.render('regi', { title: 'Express' });
+router.post('/regi', function(req, res) {
+   require('./regi');
 });
 
 router.get('/list', function(req, res) {
-    res.render('list', { title: 'Express' });
+    res.render('list', { title: 'To do List' });
 });
 
 module.exports = router;
