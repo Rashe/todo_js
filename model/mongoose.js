@@ -2,7 +2,7 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/todo_js');
 
-
+console.log('joo',mongoose);
 
 //test DB connection
 //var db = mongoose.connection;

@@ -10,8 +10,12 @@ router.get('/about', function(req, res) {
     res.render('about', { title: 'About' });
 });
 
+router.get('/regi', function(req, res) {
+    res.render('regi', { title: 'ГАЗЕНВАГЕН' });
+});
+
 router.post('/regi', function(req, res) {
-   require('./regi');
+   require('./regi').post(req);
 });
 
 router.get('/list', function(req, res) {

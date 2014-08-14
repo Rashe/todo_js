@@ -10,26 +10,67 @@
 <section class="loginForm">
 
     <h1>Буть мужиком блеееать!!!</h1>
-    <form action="">
+    <form name="regi_form">
 
         <div class="row">
             <div class="columns">
-                <input type="text" placeholder="Погоняло"/>
+                <input name="username" type="text" placeholder="Погоняло"/>
             </div>
         </div>
         <div class="row">
             <div class="columns">
-                <input type="password" placeholder="Шептунэ"/>
+                <input name="password" type="password" placeholder="Шептунэ"/>
             </div>
         </div>
         <div class="row text-center">
-            <a href="#" class="button">Заебись заполнил</a>
+            <button class="button">Заебись заполнил</button>
         </div>
 
     </form>
 
 
 </section>
+
+
+<script>
+    console.log('22221');
+    $(document.forms['regi_form']).on('submit', function() {
+        console.log('2221');
+        var form = $(this);
+        console.log(form.serialize());
+//        $('.error', form).html('');
+//        $(":submit", form).button("loading");
+        console.log('13');
+        $.ajax({
+            url: "/regi",
+            method: "POST",
+            data: form.serialize(),
+            complete: function() {
+//                $(":submit", form).button("reset");
+                console.log('132312323123123123123');
+            },
+            statusCode: {
+                200: function() {
+                    console.log('awd');
+                    form.html("Вы вошли в сайт").addClass('alert-success');
+                    window.location.href = "/";
+                },
+                403: function(jqXHR) {
+                    console.log('124124awd');
+                    var error = JSON.parse(jqXHR.responseText);
+                    $('.error', form).html(error.message);
+                },
+                500: function(jqXHR) {
+                    console.log('124124awd');
+                    var error = JSON.parse(jqXHR.responseText);
+                    console.log(error);
+                }
+            }
+        });
+        console.log('12');
+        return false;
+    });
+</script>
 
 
 {% endblock %}
