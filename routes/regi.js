@@ -1,45 +1,43 @@
-var User = require('../model/createUser');
+var CreateUser = require('../model/createUser').CreateUser;
 //var async = require('async');
+exports.get = function (req, res) {
+    res.render('regi');
+};
 
+console.log('huj2');
 
-var obj = {};
-//console.log(obj);
-//console.log('body: ' + JSON.stringify(req.body));
-//res.send(req.body);
-//
-//var username = req.body.username;
-//var password = req.body.password;
-//console.log(username, password);
+exports.post = function (req, res, next) {
+    var user = req.body.username;
+    var pass = req.body.password;
+    console.log('user_req', user, req.body.username);
 
+    //TODO
+    //this shit doesn't work, WHY?
+    req.session.user = 'kkkawdawdawdawdawdawdawdawd2';
 
+    CreateUser.findOne({username: user}, function (err, callback, next) {
+        if (callback != null) {
+            console.log('here');
+            next(sendReq(1))
+        }
+    });
 
-//exports.get = function(req, res) {
-//    res.render('regi');
-//    console.log(2);
-//};
+    var createUser = CreateUser({
+        username: user,
+        password: pass
+    });
 
-exports.post = function(req, res) {
-    console.log("hher");
-    var username = req.body.username;
-    var password = req.body.password;
+    createUser.save(function (err, createUser, callback) {
+        if (err) throw  err;
+        console.log('huj error2');
+        console.log('huj sucks__________________________________________________');
+    });
 
-    console.log(username, password);
-    //req.session.user = user._id;
-    //res.send({});
+    function sendReq(status) {
+        if (status == 1) {
 
+        }
+    }
 
-    //User.authorize(username, password, function(err, user) {
-    //    if (err) {
-    //        if (err instanceof AuthError) {
-    //            return next(new HttpError(403, err.message));
-    //        } else {
-    //            return next(err);
-    //        }
-    //    }
-    //
-    //    req.session.user = user._id;
-    //    res.send({});
-    //
-    //});
 
 };

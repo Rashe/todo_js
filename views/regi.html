@@ -59,11 +59,6 @@
                     console.log('124124awd');
                     var error = JSON.parse(jqXHR.responseText);
                     $('.error', form).html(error.message);
-                },
-                500: function(jqXHR) {
-                    console.log('124124awd');
-                    var error = JSON.parse(jqXHR.responseText);
-                    console.log(error);
                 }
             }
         });

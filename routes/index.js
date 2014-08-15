@@ -4,14 +4,18 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'To do List' });
+    req.session.gaga = 'dddd';
+    console.log('opaopa', req.session.user );
 });
 
 router.get('/about', function(req, res) {
     res.render('about', { title: 'About' });
+    console.log('ddd2', req.session.gaga);
 });
 
 router.get('/regi', function(req, res) {
     res.render('regi', { title: 'ГАЗЕНВАГЕН' });
+    console.log('ddd3', req.session.gaga);
 });
 
 router.post('/regi', function(req, res) {
