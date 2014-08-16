@@ -7,24 +7,34 @@ router.get('/', function (req, res) {
         res.render('index', {title: 'To do List'});
     }
     else {
-        res.render('todo', {title: 'To do List'});
+       res.redirect('/todo');
     }
 });
 
 router.get('/about', function (req, res) {
-    res.render('about', {title: 'About'});
+    if(!req.session.user){
+        res.render('about', {title: 'About'});
+    }else{
+        res.redirect('/todo')
+    }
+
 });
 
 router.get('/todo', function (req, res) {
     if (!req.session.user) {
-        res.render('index', {title: 'To do List'});
+        res.redirect('/');
     } else {
         res.render('todo', {title: 'To do List', cur_user: req.session.user});
     }
 });
 
 router.get('/regi', function (req, res) {
-    res.render('regi', {title: 'ГАЗЕНВАГЕН'});
+    if(!req.session.user){
+        res.render('regi', {title: 'ГАЗЕНВАГЕН'});
+    }else{
+        res.redirect('/todo');
+    }
+
 });
 
 router.post('/regi', function (req, res) {
