@@ -40,4 +40,9 @@ router.get('/list', function (req, res) {
     res.render('list', {title: 'To do List'});
 });
 
+router.get('/logout', function (req, res) {
+    delete req.session.user;
+    res.redirect('/');
+});
+
 module.exports = router;
