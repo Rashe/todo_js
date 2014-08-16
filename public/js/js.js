@@ -1,16 +1,16 @@
-function sendForm(form_name){
+function sendForm(form_name, post, href){
     $(document.forms[form_name]).on('submit', function() {
         var form = $(this);
         $('.error', form).html('');
         $.ajax({
-            url: "/login",
+            url: post,
             method: "POST",
             data: form.serialize(),
             complete: function() {
             },
             statusCode: {
                 200: function() {
-                    window.location.href = "/todo";
+                    window.location.href = href;
                 },
                 403: function(jqXHR) {
                     var error = JSON.parse(jqXHR.responseText);
@@ -30,12 +30,18 @@ function formErrorDisp(error_text){
 
 
 $( document ).ready(function() {
-    sendForm('login_form');
+    //login form
+    if($('.loginForm').length > 0){
+        sendForm('login_form', '/login', '/todo');
+    }
+    if($('.regForm').length > 0){
+        sendForm('regi_form', '/regi', '/');
+    }
+
+
 
     $( ".close" ).on( "click", function() {
-        this.parent().hide();
+       $(this).parent().hide();
     });
-
-
 
 });

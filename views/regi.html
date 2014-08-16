@@ -10,6 +10,10 @@
 <section class="regForm">
 
     <h1>Буть мужиком блеееать!!!</h1>
+    <div data-alert id="error_disp" class="alert-box alert round">
+        <p></p>
+        <a href="#" class="close">&times;</a>
+    </div>
     <form name="regi_form">
 
         <div class="row">
@@ -30,42 +34,6 @@
 
 
 </section>
-
-
-<script>
-    console.log('22221');
-    $(document.forms['regi_form']).on('submit', function() {
-        console.log('2221');
-        var form = $(this);
-        console.log(form.serialize());
-//        $('.error', form).html('');
-//        $(":submit", form).button("loading");
-        console.log('13');
-        $.ajax({
-            url: "/regi",
-            method: "POST",
-            data: form.serialize(),
-            complete: function() {
-//                $(":submit", form).button("reset");
-                console.log('132312323123123123123');
-            },
-            statusCode: {
-                200: function() {
-                    console.log('awd');
-                    form.html("Вы вошли в сайт").addClass('alert-success');
-                    window.location.href = "/";
-                },
-                403: function(jqXHR) {
-                    console.log('124124awd');
-                    var error = JSON.parse(jqXHR.responseText);
-                    $('.error', form).html(error.message);
-                }
-            }
-        });
-        console.log('12');
-        return false;
-    });
-</script>
 
 
 {% endblock %}
