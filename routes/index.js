@@ -5,21 +5,24 @@ var router = express.Router();
 router.get('/', function(req, res) {
   res.render('index', { title: 'To do List' });
     req.session.gaga = 'dddd';
-    console.log('opaopa', req.session.user );
+    console.log('sesion check', req.session.huj );
 });
 
 router.get('/about', function(req, res) {
     res.render('about', { title: 'About' });
-    console.log('ddd2', req.session.gaga);
 });
 
 router.get('/regi', function(req, res) {
     res.render('regi', { title: 'ГАЗЕНВАГЕН' });
-    console.log('ddd3', req.session.gaga);
 });
 
 router.post('/regi', function(req, res) {
-   require('./regi').post(req);
+   require('./regi').post(req, res);
+});
+
+router.post('/login', function (req, res) {
+   require('./login').post(req, res);
+
 });
 
 router.get('/list', function(req, res) {

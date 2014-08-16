@@ -10,16 +10,16 @@
 <section class="loginForm">
 
    <h1>Велкам че, пацантрэ гоу суда</h1>
-    <form id="login_form" name="login-form">
+    <form name="login_form">
 
         <div class="row">
             <div class="columns">
-                <input type="text" placeholder="Погоняло"/>
+                <input name="username" type="text" placeholder="Погоняло"/>
             </div>
         </div>
         <div class="row">
             <div class="columns">
-                <input type="password" placeholder="Шептунэ"/>
+                <input name="password" type="password" placeholder="Шептунэ"/>
             </div>
         </div>
         <div class="row text-center">
@@ -37,21 +37,21 @@
     $(document.forms['login_form']).on('submit', function() {
         console.log('2221');
         var form = $(this);
-       console.log('1');
-        $('.error', form).html('');
-        $(":submit", form).button("loading");
+        console.log(form.serialize());
+//        $('.error', form).html('');
+//        $(":submit", form).button("loading");
         console.log('13');
         $.ajax({
             url: "/login",
             method: "POST",
             data: form.serialize(),
             complete: function() {
-                $(":submit", form).button("reset");
+//                $(":submit", form).button("reset");
+                console.log('132312323123123123123');
             },
             statusCode: {
                 200: function() {
-                    form.html("Вы вошли в сайт").addClass('alert-success');
-                    window.location.href = "/";
+                    window.location.href = "/about";
                 },
                 403: function(jqXHR) {
                     var error = JSON.parse(jqXHR.responseText);
@@ -63,6 +63,5 @@
         return false;
     });
 </script>
-
 
 {% endblock %}

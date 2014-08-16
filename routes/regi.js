@@ -1,4 +1,4 @@
-var CreateUser = require('../model/createUser').CreateUser;
+var User = require('../model/user').User;
 //var async = require('async');
 exports.get = function (req, res) {
     res.render('regi');
@@ -11,18 +11,14 @@ exports.post = function (req, res, next) {
     var pass = req.body.password;
     console.log('user_req', user, req.body.username);
 
-    //TODO
-    //this shit doesn't work, WHY?
-    req.session.user = 'kkkawdawdawdawdawdawdawdawd2';
-
-    CreateUser.findOne({username: user}, function (err, callback, next) {
+    User.findOne({username: user}, function (err, callback, next) {
         if (callback != null) {
             console.log('here');
             next(sendReq(1))
         }
     });
 
-    var createUser = CreateUser({
+    var createUser = User({
         username: user,
         password: pass
     });
@@ -39,5 +35,6 @@ exports.post = function (req, res, next) {
         }
     }
 
-
+    req.session.user=user;
+    res.send({});
 };
