@@ -12,9 +12,9 @@ var errors = require('../data/errors');
 
 
 
-var GetList = function(username){
+var GetList = function(username, callback){
     //var all_list='';
-    Todo.find({username: username}, function(err, list, callback){
+    Todo.find({username: username}, function(err, list){
         if(err) throw  err;
         console.log('huj data_controller', list);
       //all_list= list;
@@ -22,6 +22,7 @@ var GetList = function(username){
     });
     //return all_list;
 };
+
 
 //var lister = GetList();
 

@@ -8,7 +8,8 @@
 {% block content %}
 
 <section class="theLists">
-  <h2>{{list}}</h2>
+  <h2>{{list[0].id}}</h2>
+    <h2>{{list[1].id}}</h2>
     <h1>{{todo.data.todo_h1}}</h1>
     <section class="todo_list">
         <div data-alert id="error_disp" class="alert-box alert round">

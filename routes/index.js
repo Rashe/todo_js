@@ -54,10 +54,12 @@ router.get('/todo', function (req, res) {
     if (!req.session.user) {
         res.redirect('/');
     } else {
-        var list = todo.GetList(req.session.user);
+        var list = todo.GetList(req.session.user, function(data){
+          var wer =data;
+            console.log('huj wer', wer);
+            res.render('todo', {list: wer, title: 'To do List', todo: {cur_user: req.session.user, data: data_templates}});
+        });
 
-        console.log('list', list);
-            res.render('todo', {list: list, title: 'To do List', todo: {cur_user: req.session.user, data: data_templates}});
     }
 });
 
