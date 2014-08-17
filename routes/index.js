@@ -1,6 +1,6 @@
 var express = require('express');
 var data_templates = require('../data/templates');
-var todo = require('../controller/todo');
+var url = require('url');
 var router = express.Router();
 
 /* GET home page. */
@@ -44,7 +44,7 @@ router.get('/about', function (req, res) {
     if (!req.session.user) {
         res.render('about', {title: 'About', data: data_templates});
     } else {
-        res.redirect('/todo')
+        res.redirect('/todo');
     }
 
 });
@@ -54,6 +54,7 @@ router.get('/todo', function (req, res) {
     if (!req.session.user) {
         res.redirect('/');
     } else {
+        var todo = require('../controller/todo');
         var list = todo.GetList(req.session.user, function (data) {
             res.render('todo', {
                 list: data,
@@ -74,8 +75,30 @@ router.post('/complete_todo', function (req, res) {
 });
 
 //user
-//router.post('/user', function (req, res) {
-//    require('../controller/complete_todo').post(req, res);
-//});
+router.get('/user/*', function (req, res) {
+    var user = require('../controller/user');
+    var parsed_path = (url.parse(req.url, true).pathname).split("/");
+    var user_fromUrl = parsed_path[2];
+    console.log('huj user', user_fromUrl);
+    var lists = user.GetLists(user_fromUrl, function (data) {
+        console.log('huj data', data);
+        if (data == false) {
+            res.render('user', {
+                lists: data,
+                title: 'User',
+                todo: {cur_user: req.session.user, data: data_templates}
+            });
+        }
+        res.render('user', {
+            lists: data,
+            title: 'User',
+            todo: {cur_user: req.session.user, data: data_templates}
+        });
+    });
+
+
+    //console.log('huj qu', req.query);
+    //var path = url.parse(req.url, true).query;
+});
 
 module.exports = router;
