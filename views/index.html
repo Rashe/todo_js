@@ -47,11 +47,10 @@
             data: form.serialize(),
             complete: function() {
 //                $(":submit", form).button("reset");
-                console.log('132312323123123123123');
             },
             statusCode: {
                 200: function() {
-                    window.location.href = "/about";
+                    window.location.href = "/todo";
                 },
                 403: function(jqXHR) {
                     var error = JSON.parse(jqXHR.responseText);

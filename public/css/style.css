@@ -78,7 +78,7 @@ table {
     min-height: 600px;
 }
 
-.loginForm, .aboutNa{
+.loginForm, .aboutNa, .regForm{
     width: 450px;
     margin: 0 auto;
     padding-top: 30px;
