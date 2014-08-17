@@ -73,4 +73,9 @@ router.post('/complete_todo', function (req, res) {
     require('../controller/complete_todo').post(req, res);
 });
 
+//user
+//router.post('/user', function (req, res) {
+//    require('../controller/complete_todo').post(req, res);
+//});
+
 module.exports = router;
