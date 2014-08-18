@@ -7,14 +7,13 @@ exports.get = function (req, res) {
 
 exports.post = function (req, res, next) {
 
-    var user = req.body.username;
-    var pass = req.body.password;
-    User.findOne({username: user}, function (err, userDb) {
+    var qRes = res,
+        user = req.body.username,
+        pass = req.body.password;
+    User.findOne({username: user}, function (err, userDb, next) {
        if (userDb == null) {
-            console.log('im here');
-           res.writeHead(403, { 'Content-Type': 'text/html' });
-           res.end(file, "utf-8");
-           console.log('im here2');
+           res.writeHead(403, {"Content-Type": "text/plain"});
+           res.end("shit");
         };
         if (userDb.password != pass) {
 
