@@ -90,3 +90,7 @@ h1{
     margin-bottom: 80px;
     text-align: center;
 }
+
+#error_disp{
+    display: none;
+}

@@ -10,6 +10,10 @@
 <section class="loginForm">
 
    <h1>Велкам че, пацантрэ гоу суда</h1>
+    <div data-alert id="error_disp" class="alert-box alert round">
+        <p></p>
+        <a href="#" class="close">&times;</a>
+    </div>
     <form name="login_form">
 
         <div class="row">
@@ -28,39 +32,6 @@
 
     </form>
 
-
 </section>
-
-
-<script>
-    console.log('22221');
-    $(document.forms['login_form']).on('submit', function() {
-        console.log('2221');
-        var form = $(this);
-        console.log(form.serialize());
-//        $('.error', form).html('');
-//        $(":submit", form).button("loading");
-        console.log('13');
-        $.ajax({
-            url: "/login",
-            method: "POST",
-            data: form.serialize(),
-            complete: function() {
-//                $(":submit", form).button("reset");
-            },
-            statusCode: {
-                200: function() {
-                    window.location.href = "/todo";
-                },
-                403: function(jqXHR) {
-                    var error = JSON.parse(jqXHR.responseText);
-                    $('.error', form).html(error.message);
-                }
-            }
-        });
-        console.log('12');
-        return false;
-    });
-</script>
 
 {% endblock %}
