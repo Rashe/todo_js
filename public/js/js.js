@@ -13,7 +13,8 @@ function sendForm(form_name, post, href){
                     window.location.href = href;
                 },
                 403: function(jqXHR) {
-                    var error = JSON.parse(jqXHR.responseText);
+                    //var error = JSON.parse(jqXHR.responseText);
+                    var error = jqXHR.responseText;
                     formErrorDisp(error);
                     //$('.error', form).html(error.message);
                 }

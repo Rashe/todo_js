@@ -19,7 +19,7 @@ router.get('/todo', function (req, res) {
     if (!req.session.user) {
         res.render('index', {title: 'To do List'});
     } else {
-        res.render('todo', {title: 'To do List'});
+        res.render('todo', {title: 'To do List', cur_user: req.session.user});
     }
 });
 
