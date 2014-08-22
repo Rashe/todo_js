@@ -1,5 +1,6 @@
 var express = require('express');
 var data_templates = require('../data/templates');
+var todo = require('../controller/todo');
 var router = express.Router();
 
 /* GET home page. */
@@ -53,13 +54,18 @@ router.get('/todo', function (req, res) {
     if (!req.session.user) {
         res.redirect('/');
     } else {
-        //var todo = require('../controller/todo');
-        res.render('todo', {title: 'To do List', todo: {cur_user: req.session.user, data: data_templates}});
+        var list = todo.GetList(req.session.user);
+
+        console.log('list', list);
+            res.render('todo', {list: list, title: 'To do List', todo: {cur_user: req.session.user, data: data_templates}});
     }
 });
 
+
+//return next(new HttpError(403, err.message));
+
 router.post('/todo', function (req, res) {
-    var user =req.session.user;
+    var user = req.session.user;
     require('../controller/create_todo').post(req, res, user);
 });
 

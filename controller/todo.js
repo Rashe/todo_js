@@ -1,45 +1,42 @@
 var Todo = require('../model/todo').Todo;
 var errors = require('../data/errors');
-//exports.get = function (req, res) {
-//    res.render('regi');
-//};
 
-function GetList(username){
+//function GetList(username, res){
+//    var all_list='';
+//   Todo.find({username: username}, function(err, list, next){
+//       if(err) throw  err;
+//       console.log('huj data_controller', list);
+//       all_list = list;
+//   });
+//}
 
-}
 
 
-
-exports.post = function (req, res, next) {
-    var qRes = res,
-        user = req.body.username,
-        pass = req.body.password;
-
-    if (user == '' || user == null) {
-        res.writeHead(403, {"Content-Type": "text/plain"});
-        res.end(errors.fuck_you);
-    } else if (pass == '' || pass == null) {
-        res.writeHead(403, {"Content-Type": "text/plain"});
-        res.end(errors.fuck_you);
-    } else {
-        User.findOne({username: user}, function (err, userDb, next) {
-            if (userDb != null) {
-                res.writeHead(403, {"Content-Type": "text/plain"});
-                res.end(errors.already_registered);
-            }
-            else {
-
-                var createUser = new User({
-                    username: user,
-                    password: pass
-                });
-
-                createUser.save(function (err) {
-                    if (err) throw  err;
-                });
-                req.session.user = user;
-                qRes.send({});
-            }
-        });
-    }
+var GetList = function(username){
+    //var all_list='';
+    Todo.find({username: username}, function(err, list, callback){
+        if(err) throw  err;
+        console.log('huj data_controller', list);
+      //all_list= list;
+        callback(list);
+    });
+    //return all_list;
 };
+
+//var lister = GetList();
+
+module.exports.GetList = GetList;
+
+
+
+
+//var x = 5;
+//var addX = function(value) {
+//    return value + x;
+//};
+//module.exports.x = x;
+//module.exports.addX = addX;
+////Now we can use our loaded module:
+//
+//    var misc = require('./misc');
+//console.log("Adding %d to 10 gives us %d", misc.x, misc.addX(10));
