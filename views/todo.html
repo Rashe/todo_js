@@ -10,7 +10,33 @@
 <section class="theLists">
 
     <h1>{{todo.data.todo_h1}}</h1>
+    <section class="todo_list">
+        <div data-alert id="error_disp" class="alert-box alert round">
+            <p></p>
+            <a href="#" class="close">&times;</a>
+        </div>
 
+        <div class="form_wrap row">
+            <form name="create_todo" data-abide>
+
+                <div class="large-12 columns">
+                    <div class="row collapse">
+                        <div class="small-9 columns">
+                            <input name="addtodo" type="text" class="addput"
+                                   placeholder="{{todo.data.todo_form_addPlaceHolder}}" required>
+                        </div>
+                        <div class="small-3 columns">
+                            <button class="button postfix">{{todo.data.todo_formButton}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="todo_listUl">
+
+        </div>
+    </section>
 
 
 </section>

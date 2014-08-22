@@ -1,6 +1,6 @@
 {
   "name": "todo_js",
-  "version": "0.2.3",
+  "version": "0.7.2",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

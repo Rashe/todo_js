@@ -94,3 +94,21 @@ h1{
 #error_disp{
     display: none;
 }
+
+.todo_list{
+    text-align: center;
+    width: 450px;
+    margin: 0 auto;
+}
+
+.todo_item{
+    color: #ba2e00;
+    font-size: 24px;
+    background: #FE7E54;
+    border-radius: 4px;
+    width: 70%;
+    margin: 0 auto;
+    min-height: 35px;
+    line-height: 30px;
+    margin-bottom: 10px;
+}

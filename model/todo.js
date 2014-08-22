@@ -2,16 +2,22 @@ var mongoose = require('../model/mongoose');
 var schema = mongoose.Schema({
     username: {
         type: String,
-        unique: true,
         required: true
     },
-    password: {
+    title: {
         type: String,
         required: true
     },
-    dateCreate: {
+    text: {
+        type: String
+    },
+    status: {
+        type: Boolean,
+        default: true
+    },
+    dateCreated: {
         type: Date,
         default: Date.now
     }
 });
-exports.User = mongoose.model('User', schema);
+exports.Todo = mongoose.model('Todo', schema);

@@ -13,5 +13,7 @@
     "regi_form_usernamePlaceHolder": "Погоняло",
     "regi_form_passwordPlaceHolder": "Шептунэ",
     "regi_formButton": "Заебись заполнил",
-    "todo_h1": "Листы - глисты.. Хагага пацанчики.."
+    "todo_h1": "Листы - глисты.. Хагага пацанчики..",
+    "todo_form_addPlaceHolder": "Добавь в лист",
+    "todo_formButton": "Добавить"
 }

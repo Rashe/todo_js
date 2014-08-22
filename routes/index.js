@@ -5,55 +5,63 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res) {
     if (!req.session.user) {
-        res.render('index', {title: 'To do List', data:data_templates});
+        res.render('index', {title: 'To do List', data: data_templates});
     }
     else {
-       res.redirect('/todo');
+        res.redirect('/todo');
     }
 });
 
-router.get('/about', function (req, res) {
-    if(!req.session.user){
-        res.render('about', {title: 'About', data:data_templates});
-    }else{
-        res.redirect('/todo')
-    }
-
-});
-
-router.get('/todo', function (req, res) {
-    if (!req.session.user) {
-        res.redirect('/');
-    } else {
-        res.render('todo', {title: 'To do List', todo:{cur_user: req.session.user, data:data_templates}});
-    }
-});
-
+//Regi
 router.get('/regi', function (req, res) {
-    if(!req.session.user){
-        res.render('regi', {title: 'ГАЗЕНВАГЕН', data:data_templates});
-    }else{
+    if (!req.session.user) {
+        res.render('regi', {title: 'ГАЗЕНВАГЕН', data: data_templates});
+    } else {
         res.redirect('/todo');
     }
 
 });
 
 router.post('/regi', function (req, res) {
-    require('./regi').post(req, res);
+    require('../controller/regi').post(req, res);
 });
+
+//Login & Logout
 
 router.post('/login', function (req, res) {
-    require('./login').post(req, res);
+    require('../controller/login').post(req, res);
 
 });
-
-//router.get('/list', function (req, res) {
-//    res.render('list', {title: 'To do List', data:data_templates});
-//});
 
 router.get('/logout', function (req, res) {
     delete req.session.user;
     res.redirect('/');
 });
+
+//About
+router.get('/about', function (req, res) {
+    if (!req.session.user) {
+        res.render('about', {title: 'About', data: data_templates});
+    } else {
+        res.redirect('/todo')
+    }
+
+});
+
+//TodoList
+router.get('/todo', function (req, res) {
+    if (!req.session.user) {
+        res.redirect('/');
+    } else {
+        //var todo = require('../controller/todo');
+        res.render('todo', {title: 'To do List', todo: {cur_user: req.session.user, data: data_templates}});
+    }
+});
+
+router.post('/todo', function (req, res) {
+    var user =req.session.user;
+    require('../controller/create_todo').post(req, res, user);
+});
+
 
 module.exports = router;
