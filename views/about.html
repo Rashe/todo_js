@@ -1,7 +1,7 @@
 {% extends 'layout_tpl.html' %}
 {% block title %}About{% endblock %}
 {% block nav %}
-{% include 'nav.html' %}
+{% include 'nav.html' with data %}
 {% endblock %}
 
 
@@ -9,7 +9,7 @@
 
 <section class="aboutNa">
 
-    <h1>И тут я подумал, а че бы и нет?</h1>
+    <h1>{{data.about_h1}}</h1>
 
 
 

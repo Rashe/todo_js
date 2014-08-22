@@ -1,5 +1,5 @@
 var User = require('../model/user').User;
-var echo = require('../data/echo');
+var errors = require('../data/errors');
 exports.get = function (req, res) {
     res.render('regi');
 };
@@ -12,7 +12,7 @@ exports.post = function (req, res, next) {
     User.findOne({username: user}, function (err, userDb, next) {
         if (userDb != null) {
             res.writeHead(403, {"Content-Type": "text/plain"});
-            res.end(echo.already_registered);
+            res.end(errors.already_registered);
         }
         else {
 

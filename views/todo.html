@@ -1,7 +1,7 @@
 {% extends 'layout_tpl.html' %}
 {% block title %}Waha{% endblock %}
 {% block nav %}
-{% include 'nav_registered.html' with cur_user %}
+{% include 'nav_registered.html' with todo %}
 {% endblock %}
 
 
@@ -9,7 +9,7 @@
 
 <section class="theLists">
 
-    <h1>Листы - глисты.. Хагага пацанчики..</h1>
+    <h1>{{todo.data.todo_h1}}</h1>
 
 
 

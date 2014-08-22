@@ -1,7 +1,7 @@
 {% extends 'layout_tpl.html' %}
 {% block title %}To Do Glist{% endblock %}
 {% block nav %}
-{% include 'nav.html' %}
+{% include 'nav.html' with data %}
 {% endblock %}
 
 
@@ -9,7 +9,7 @@
 
 <section class="loginForm">
 
-    <h1>Мальчик иди НАХУЙ!!!</h1>
+    <h1>{{data.error_h1}}</h1>
     404
 
 

@@ -1,7 +1,7 @@
 {% extends 'layout_tpl.html' %}
 {% block title %}Рега на{% endblock %}
 {% block nav %}
-{% include 'nav.html' %}
+{% include 'nav.html' with data %}
 {% endblock %}
 
 
@@ -9,7 +9,7 @@
 
 <section class="regForm">
 
-    <h1>Буть мужиком блеееать!!!</h1>
+    <h1>{{data.regi_h1}}</h1>
     <div data-alert id="error_disp" class="alert-box alert round">
         <p></p>
         <a href="#" class="close">&times;</a>
@@ -18,16 +18,16 @@
 
         <div class="row">
             <div class="columns">
-                <input name="username" type="text" placeholder="Погоняло"/>
+                <input name="username" type="text" placeholder="{{data.regi_form_usernamePlaceHolder}}"/>
             </div>
         </div>
         <div class="row">
             <div class="columns">
-                <input name="password" type="password" placeholder="Шептунэ"/>
+                <input name="password" type="password" placeholder="{{data.regi_form_passwordPlaceHolder}}"/>
             </div>
         </div>
         <div class="row text-center">
-            <button class="button">Заебись заполнил</button>
+            <button class="button">{{data.regi_formButton}}</button>
         </div>
 
     </form>
