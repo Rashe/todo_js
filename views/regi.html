@@ -14,16 +14,16 @@
         <p></p>
         <a href="#" class="close">&times;</a>
     </div>
-    <form name="regi_form">
-
+    <form name="regi_form" data-abide>
+        <small class="error">A valid email address is required.</small>
         <div class="row">
             <div class="columns">
-                <input name="username" type="text" placeholder="{{data.regi_form_usernamePlaceHolder}}"/>
+                <input name="username" type="text" placeholder="{{data.regi_form_usernamePlaceHolder}}" required/>
             </div>
         </div>
         <div class="row">
             <div class="columns">
-                <input name="password" type="password" placeholder="{{data.regi_form_passwordPlaceHolder}}"/>
+                <input name="password" type="password" placeholder="{{data.regi_form_passwordPlaceHolder}}" required/>
             </div>
         </div>
         <div class="row text-center">
