@@ -113,11 +113,55 @@ h1{
     margin-bottom: 10px;
 }
 
-.hidden_id, .item_tooltip{
+.hidden_id{
     display: none;
+}
+
+.todo_item{
+    position: relative;
+    cursor: pointer;
+}
+
+.todo_item:hover .item_tooltip, .todo_item:hover .check_tool{
+    display: block;
+
+}
+
+.item_tooltip{
+    display: none;
+    font-family: 'PT Sans Narrow', sans-serif;
+    width: 190px;
+    position: absolute;
+    background: #000;
+    top: 0px;
+    right: -123px;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 0;
+    border-radius: 2px;
+}
+
+.item_tooltip .date_created{
+    font-style: italic;
+    font-size: 14px;
+    color: coral;
 }
 
 .todo_item h4{
     font-size: 24px;
     color: green;
+}
+
+.check_tool{
+    display: none;
+    font-family: 'PT Sans Narrow', sans-serif;
+    width: 190px;
+    position: absolute;
+    background: green;
+    top: 0px;
+    left: -122px;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 0;
+    border-radius: 2px;
 }

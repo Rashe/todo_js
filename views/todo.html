@@ -7,8 +7,13 @@
 
 {% block content %}
 
+{#
+<div class="item_toolti">{{ item|json_encode }}</div>
+#}
+
+
 <section class="theLists">
-      <h1>{{todo.data.todo_h1}}</h1>
+    <h1>{{todo.data.todo_h1}}</h1>
     <section class="todo_list">
         <div data-alert id="error_disp" class="alert-box alert round">
             <p></p>
@@ -31,7 +36,6 @@
                 </div>
             </form>
         </div>
-
         <div class="todo_listUl">
             {% if !list.length %}
             <div class="todo_item">
@@ -41,8 +45,12 @@
             {% for item in list %}
             <div class="todo_item">
                 <span class="hidden_id">{{ item.id }}</span>
+                <div class="check_tool">{{todo.data.todo_pressToComplete}}</div>
                 <div class="item_title"> {{item.title}}</div>
-                <div class="item_tooltip"></div>
+                <div class="item_tooltip">
+                    <span class="date_created">{{todo.data.todo_say_date}}:</span>
+                    <span class="date_createdData"> {{item.dateCreated |date('jS \o\f F')}}</span>
+                </div>
             </div>
             {% endfor %}
             {% endif %}

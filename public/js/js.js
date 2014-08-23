@@ -54,20 +54,44 @@ function createTodo(form_name, post) {
 }
 
 function appendToList(data) {
-    console.log('huj data',data );
     $('.todo_listUl').append(
         '<div class="todo_item">'
-        + '<span class="hidden_id">' +data.id+'</span>'
-        + '<div class="item_title">'+data.title+'</div>'
-        + '<div class="item_tooltip"></div>'
+        + '<span class="hidden_id">' + data.id + '</span>'
+        + ' <div class="check_tool">Press to complete</div>'
+        + '<div class="item_title">' + data.title + '</div>'
+        + '<div class="item_tooltip"><span class="date_created">Дата создания:</span><span class="date_createdData"> Тудэй блять!</span></div>'
         + '</div>')
         .hide().fadeIn('slow');
     $('.addput').val('');
-    if($('.say_empty').length> 0){
+    if ($('.say_empty').length > 0) {
         $('.say_empty').hide();
     }
 }
 
+function completeTodo(item) {
+    var id = $(item).children('.hidden_id').text();
+    $.ajax({
+        url: '/complete_todo',
+        method: "POST",
+        data: {id: id},
+        complete: function () {
+        },
+        statusCode: {
+            200: function (jqXHR) {
+                removeItemfromTodo(item);
+            },
+            403: function (jqXHR) {
+                var error = jqXHR.responseText;
+                formErrorDisp(error);
+            }
+        }
+    });
+    return false;
+}
+
+function removeItemfromTodo(item) {
+    $(item).hide();
+}
 
 //DOC READY
 $(document).ready(function () {
@@ -84,6 +108,10 @@ $(document).ready(function () {
 
     $(".close").on("click", function () {
         $(this).parent().hide();
+    });
+
+    $('body').on('click', '.todo_item', function () {
+        completeTodo(this);
     });
 
 });

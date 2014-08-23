@@ -16,5 +16,7 @@
     "todo_h1": "Листы - глисты.. Хагага пацанчики..",
     "todo_form_addPlaceHolder": "Добавь в лист",
     "todo_formButton": "Добавить",
-    "todo_say_empty" : "Список пуст э"
+    "todo_say_empty": "Список пуст э",
+    "todo_say_date": "Дата создания",
+    "todo_pressToComplete": "Press to complete"
 }

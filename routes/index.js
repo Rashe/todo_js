@@ -54,8 +54,12 @@ router.get('/todo', function (req, res) {
     if (!req.session.user) {
         res.redirect('/');
     } else {
-        var list = todo.GetList(req.session.user, function(data){
-            res.render('todo', {list: data, title: 'To do List', todo: {cur_user: req.session.user, data: data_templates}});
+        var list = todo.GetList(req.session.user, function (data) {
+            res.render('todo', {
+                list: data,
+                title: 'To do List',
+                todo: {cur_user: req.session.user, data: data_templates}
+            });
         });
     }
 });
@@ -65,5 +69,8 @@ router.post('/todo', function (req, res) {
     require('../controller/create_todo').post(req, res, user);
 });
 
+router.post('/complete_todo', function (req, res) {
+    require('../controller/complete_todo').post(req, res);
+});
 
 module.exports = router;
