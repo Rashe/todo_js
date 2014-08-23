@@ -1,5 +1,6 @@
 var Todo = require('../model/todo').Todo;
 var errors = require('../data/errors');
+var mongoose = require('../model/mongoose');
 exports.get = function (req, res) {
     res.render('todo');
 };
@@ -7,7 +8,8 @@ exports.get = function (req, res) {
 exports.post = function (req, res, curUser) {
     var qRes = res,
         user = curUser,
-        title = req.body.addtodo;
+        title = req.body.addtodo,
+        id = mongoose.Types.ObjectId();
 
     if (title == '' || title == null) {
         res.writeHead(403, {"Content-Type": "text/plain"});
@@ -16,7 +18,8 @@ exports.post = function (req, res, curUser) {
 
         var insertToList = new Todo({
             username: user,
-            title: title
+            title: title,
+            _id: id
         });
 
         insertToList.save(function (err) {
@@ -24,6 +27,6 @@ exports.post = function (req, res, curUser) {
             //res.writeHead(200, {"Content-Type": "text/plain"});
             //res.end(title);
         });
-        qRes.send({title: title});
+        qRes.send({title: title, id : id});
     }
 };

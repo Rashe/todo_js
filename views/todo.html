@@ -8,9 +8,7 @@
 {% block content %}
 
 <section class="theLists">
-  <h2>{{list[0].id}}</h2>
-    <h2>{{list[1].id}}</h2>
-    <h1>{{todo.data.todo_h1}}</h1>
+      <h1>{{todo.data.todo_h1}}</h1>
     <section class="todo_list">
         <div data-alert id="error_disp" class="alert-box alert round">
             <p></p>
@@ -35,7 +33,19 @@
         </div>
 
         <div class="todo_listUl">
-
+            {% if !list.length %}
+            <div class="todo_item">
+                <h4 class="say_empty">{{todo.data.todo_say_empty}}</h4>
+            </div>
+            {% else %}
+            {% for item in list %}
+            <div class="todo_item">
+                <span class="hidden_id">{{ item.id }}</span>
+                <div class="item_title"> {{item.title}}</div>
+                <div class="item_tooltip"></div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
     </section>
 

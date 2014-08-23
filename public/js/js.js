@@ -1,18 +1,18 @@
-function sendForm(form_name, post, href){
-    $(document.forms[form_name]).on('submit', function() {
+function sendForm(form_name, post, href) {
+    $(document.forms[form_name]).on('submit', function () {
         var form = $(this);
         $('.error', form).html('');
         $.ajax({
             url: post,
             method: "POST",
             data: form.serialize(),
-            complete: function() {
+            complete: function () {
             },
             statusCode: {
-                200: function() {
+                200: function () {
                     window.location.href = href;
                 },
-                403: function(jqXHR) {
+                403: function (jqXHR) {
                     //var error = JSON.parse(jqXHR.responseText);
                     var error = jqXHR.responseText;
                     formErrorDisp(error);
@@ -24,27 +24,26 @@ function sendForm(form_name, post, href){
     });
 }
 
-function formErrorDisp(error_text){
+function formErrorDisp(error_text) {
     $('#error_disp').show();
     $('#error_disp p').text(error_text);
 }
 
-function createTodo(form_name, post){
-    $(document.forms[form_name]).on('submit', function() {
+function createTodo(form_name, post) {
+    $(document.forms[form_name]).on('submit', function () {
         var form = $(this);
         $('.error', form).html('');
         $.ajax({
             url: post,
             method: "POST",
             data: form.serialize(),
-            complete: function() {
+            complete: function () {
             },
             statusCode: {
-                200: function(jqXHR) {
-                    var resptext = jqXHR.title;
-                    appendToList(resptext);
+                200: function (jqXHR) {
+                    appendToList(jqXHR);
                 },
-                403: function(jqXHR) {
+                403: function (jqXHR) {
                     var error = jqXHR.responseText;
                     formErrorDisp(error);
                 }
@@ -54,27 +53,37 @@ function createTodo(form_name, post){
     });
 }
 
-function appendToList(data){
-    $('.todo_listUl').append('<div class="todo_item">' + data +'</div>').hide().fadeIn('slow');
+function appendToList(data) {
+    console.log('huj data',data );
+    $('.todo_listUl').append(
+        '<div class="todo_item">'
+        + '<span class="hidden_id">' +data.id+'</span>'
+        + '<div class="item_title">'+data.title+'</div>'
+        + '<div class="item_tooltip"></div>'
+        + '</div>')
+        .hide().fadeIn('slow');
     $('.addput').val('');
+    if($('.say_empty').length> 0){
+        $('.say_empty').hide();
+    }
 }
 
 
 //DOC READY
-$( document ).ready(function() {
+$(document).ready(function () {
     //login form
-    if($('.loginForm').length > 0){
+    if ($('.loginForm').length > 0) {
         sendForm('login_form', '/login', '/todo');
     }
-    if($('.regForm').length > 0){
+    if ($('.regForm').length > 0) {
         sendForm('regi_form', '/regi', '/');
     }
-    if($('.todo_list').length > 0){
+    if ($('.todo_list').length > 0) {
         createTodo('create_todo', '/todo');
     }
 
-    $( ".close" ).on( "click", function() {
-       $(this).parent().hide();
+    $(".close").on("click", function () {
+        $(this).parent().hide();
     });
 
 });

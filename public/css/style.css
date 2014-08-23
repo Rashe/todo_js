@@ -101,7 +101,7 @@ h1{
     margin: 0 auto;
 }
 
-.todo_item{
+.item_title{
     color: #ba2e00;
     font-size: 24px;
     background: #FE7E54;
@@ -111,4 +111,13 @@ h1{
     min-height: 35px;
     line-height: 30px;
     margin-bottom: 10px;
+}
+
+.hidden_id, .item_tooltip{
+    display: none;
+}
+
+.todo_item h4{
+    font-size: 24px;
+    color: green;
 }
