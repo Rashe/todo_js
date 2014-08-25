@@ -83,17 +83,21 @@ router.get('/user/*', function (req, res) {
     var lists = user.GetLists(user_fromUrl, function (data) {
         console.log('huj data', data);
         if (data == false) {
+            console.log('huj gagri' );
+            res.render('user', {
+                lists: null,
+                title: 'User',
+                todo: {cur_user: req.session.user, data: data_templates}
+            });
+        }else{
+            console.log('huj3 ' );
             res.render('user', {
                 lists: data,
                 title: 'User',
                 todo: {cur_user: req.session.user, data: data_templates}
             });
         }
-        res.render('user', {
-            lists: data,
-            title: 'User',
-            todo: {cur_user: req.session.user, data: data_templates}
-        });
+
     });
 
 
