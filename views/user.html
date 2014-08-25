@@ -1,7 +1,11 @@
 {% extends 'layout_tpl.html' %}
 {% block title %}Waha{% endblock %}
 {% block nav %}
+{% if todo.cur_user == '' %}
+{% include 'nav.html' with data %}
+{% else %}
 {% include 'nav_registered.html' with todo %}
+{% endif %}
 {% endblock %}
 
 
@@ -9,6 +13,13 @@
 
 {#
 <div class="item_toolti">{{ item|json_encode }}</div>
+{% if false %}
+Tacos
+{% elseif true %}
+Burritos
+{% else %}
+Churros
+{% endif %}
 #}
 
 
@@ -45,6 +56,7 @@
             {% for item in list %}
             <div class="todo_item">
                 <span class="hidden_id">{{ item.id }}</span>
+
                 <div class="check_tool">{{todo.data.todo_pressToComplete}}</div>
                 <div class="item_title"> {{item.title}}</div>
                 <div class="item_tooltip">
