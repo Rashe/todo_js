@@ -79,20 +79,17 @@ router.get('/user/*', function (req, res) {
     var user = require('../controller/user');
     var parsed_path = (url.parse(req.url, true).pathname).split("/");
     var user_fromUrl = parsed_path[2];
-    console.log('huj user', user_fromUrl);
-    var lists = user.GetLists(user_fromUrl, function (data) {
-        console.log('huj data', data);
-        if (data == false) {
-            console.log('huj gagri' );
+    var lists = user.GetLists(user_fromUrl, function (list, user) {
+        if (list == false) {
             res.render('user', {
                 lists: null,
                 title: 'User',
                 todo: {cur_user: req.session.user, data: data_templates}
             });
-        }else{
-            console.log('huj3 ' );
+        } else {
             res.render('user', {
-                lists: data,
+                lists: list,
+                userc: user,
                 title: 'User',
                 todo: {cur_user: req.session.user, data: data_templates}
             });

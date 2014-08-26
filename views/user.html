@@ -11,7 +11,7 @@
 
 {% block content %}
 
-{#
+{# COMMENTED YANI!!!
 <div class="item_toolti">{{ item|json_encode }}</div>
 {% if false %}
 Tacos
@@ -28,25 +28,19 @@ Churros
     <h1>{{todo.data.user_user_notFound}}</h1>
     {% else %}
 
+    <h1>{{userc.username}}, {{todo.data.user_userFound}}</h1>
     <section class="users_list">
 
 
         <div class="todo_listUl">
-            {% if !list.length %}
+            {% if !lists.length %}
             <div class="todo_item">
                 <h4 class="say_empty">{{todo.data.todo_say_empty}}</h4>
             </div>
             {% else %}
-            {% for item in list %}
+            {% for item in lists %}
             <div class="todo_item">
-                <span class="hidden_id">{{ item.id }}</span>
-
-                <div class="check_tool">{{todo.data.todo_pressToComplete}}</div>
                 <div class="item_title"> {{item.title}}</div>
-                <div class="item_tooltip">
-                    <span class="date_created">{{todo.data.todo_say_date}}:</span>
-                    <span class="date_createdData"> {{item.dateCreated |date('jS \o\f F')}}</span>
-                </div>
             </div>
             {% endfor %}
             {% endif %}
@@ -55,7 +49,6 @@ Churros
 
 
     {% endif %}
-
 
 
 </section>

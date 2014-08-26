@@ -19,5 +19,6 @@
     "todo_say_empty": "Список пуст э",
     "todo_say_date": "Дата создания",
     "todo_pressToComplete": "Press to complete",
-    "user_user_notFound": "Такой пацанчик нету да!"
+    "user_user_notFound": "Такой пацанчик нету да!",
+    "user_userFound": "Такой пацантрэ есть"
 }
